@@ -1,0 +1,13 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "shader_type canvas_item;
+
+uniform int color_space_size = 64;
+
+void fragment(){
+	float css_f = float(color_space_size);
+	vec3 col =  texture(TEXTURE, UV).xyz;
+	col = round(col * css_f) / css_f;
+	COLOR = vec4(col,1.f);
+}"

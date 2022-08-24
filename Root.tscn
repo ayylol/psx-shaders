@@ -1,6 +1,26 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://world_env.tres" type="Environment" id=1]
+[ext_resource path="res://Assets/dither_shader.tres" type="Shader" id=2]
+
+[sub_resource type="ShaderMaterial" id=14]
+shader = ExtResource( 2 )
+shader_param/color_space_size = 64
+
+[sub_resource type="SphereMesh" id=10]
+
+[sub_resource type="SpatialMaterial" id=11]
+albedo_color = Color( 0.341176, 0.658824, 0.54902, 1 )
+
+[sub_resource type="PlaneMesh" id=1]
+
+[sub_resource type="SpatialMaterial" id=12]
+albedo_color = Color( 0.858824, 0.878431, 0.756863, 1 )
+
+[sub_resource type="PlaneMesh" id=9]
+
+[sub_resource type="SpatialMaterial" id=13]
+albedo_color = Color( 0.772549, 0.662745, 0.886275, 1 )
 
 [sub_resource type="CubeMesh" id=2]
 
@@ -63,90 +83,79 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 360, 0 ) ]
 }
 
-[sub_resource type="PlaneMesh" id=1]
+[node name="Screen" type="ViewportContainer"]
+material = SubResource( 14 )
+anchor_right = 1.0
+anchor_bottom = 1.0
 
-[sub_resource type="SpatialMaterial" id=12]
-albedo_color = Color( 0.858824, 0.878431, 0.756863, 1 )
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 640, 480 )
+handle_input_locally = false
+render_target_update_mode = 3
 
-[sub_resource type="PlaneMesh" id=9]
+[node name="Scene" type="Spatial" parent="Viewport"]
 
-[sub_resource type="SpatialMaterial" id=13]
-albedo_color = Color( 0.772549, 0.662745, 0.886275, 1 )
-
-[sub_resource type="SphereMesh" id=10]
-
-[sub_resource type="SpatialMaterial" id=11]
-albedo_color = Color( 0.341176, 0.658824, 0.54902, 1 )
-
-[node name="Root" type="Spatial"]
-
-[node name="Camera" type="Camera" parent="."]
+[node name="Camera" type="Camera" parent="Viewport/Scene"]
 transform = Transform( -0.72113, -0.227244, 0.65447, 0, 0.944675, 0.328008, -0.692799, 0.236536, -0.681234, 3.86871, 1.93892, -4.02692 )
 
-[node name="Cube" type="MeshInstance" parent="."]
-transform = Transform( 0.344122, 0, 0, 0, 0.344122, 0, 0, 0, 0.344122, 1.60164, 0.904398, 0.83527 )
-mesh = SubResource( 2 )
-material/0 = SubResource( 8 )
+[node name="Sphere" type="MeshInstance" parent="Viewport/Scene"]
+transform = Transform( 0.369779, 0, 0, 0, 0.369779, 0, 0, 0, 0.369779, -0.0839782, 0.789828, -2.94579 )
+mesh = SubResource( 10 )
+material/0 = SubResource( 11 )
 
-[node name="FloatAnim" type="AnimationPlayer" parent="Cube"]
-autoplay = "float"
-anims/float = SubResource( 3 )
+[node name="Room" type="Spatial" parent="Viewport/Scene"]
 
-[node name="RotAnim" type="AnimationPlayer" parent="Cube"]
-autoplay = "RotAnim"
-anims/RESET = SubResource( 5 )
-anims/RotAnim = SubResource( 4 )
-
-[node name="Room" type="Spatial" parent="."]
-
-[node name="floor" type="MeshInstance" parent="Room"]
+[node name="floor" type="MeshInstance" parent="Viewport/Scene/Room"]
 transform = Transform( 7, 0, 0, 0, 1, 0, 0, 0, 7, 0, 0, 0 )
 mesh = SubResource( 1 )
 skeleton = NodePath("../..")
 material/0 = SubResource( 12 )
 
-[node name="floor2" type="MeshInstance" parent="Room"]
-transform = Transform( 7, 0, 0, 0, 1, 0, 0, 0, 7, 0, 0, 0 )
-mesh = SubResource( 1 )
-skeleton = NodePath("../..")
-material/0 = SubResource( 12 )
-
-[node name="roof" type="MeshInstance" parent="Room"]
+[node name="roof" type="MeshInstance" parent="Viewport/Scene/Room"]
 transform = Transform( -7, 8.74228e-08, 0, -6.11959e-07, -1, 0, 0, 0, 7, 0, 4.5, 0 )
 mesh = SubResource( 1 )
 skeleton = NodePath("../..")
 
-[node name="Wall" type="MeshInstance" parent="Room"]
+[node name="Wall" type="MeshInstance" parent="Viewport/Scene/Room"]
 transform = Transform( -7, -1.50996e-07, 1.48505e-14, 0, -4.37114e-08, -2.25, 1.05697e-06, -1, 9.83506e-08, 0, 2.25, 7 )
 mesh = SubResource( 9 )
 skeleton = NodePath("../..")
 material/0 = SubResource( 13 )
 
-[node name="Wall2" type="MeshInstance" parent="Room"]
+[node name="Wall2" type="MeshInstance" parent="Viewport/Scene/Room"]
 transform = Transform( -3.0598e-07, 1, -9.83506e-08, 0, -4.37114e-08, -2.25, -7, -4.37114e-08, 4.29904e-15, -7, 2.25, 0 )
 mesh = SubResource( 9 )
 skeleton = NodePath("../..")
 material/0 = SubResource( 13 )
 
-[node name="Lighting" type="Spatial" parent="."]
+[node name="Lighting" type="Spatial" parent="Viewport/Scene"]
 
-[node name="OmniLight" type="OmniLight" parent="Lighting"]
+[node name="OmniLight" type="OmniLight" parent="Viewport/Scene/Lighting"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03329, 2.00841, -2.16196 )
-light_energy = 0.1
+light_energy = 0.3
 shadow_enabled = true
 omni_range = 12.5973
 
-[node name="TopLight" type="DirectionalLight" parent="Lighting"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2.5089, 0 )
+[node name="TopLight" type="DirectionalLight" parent="Viewport/Scene/Lighting"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2.51282, 0 )
 visible = false
 light_energy = 0.2
 shadow_enabled = true
 shadow_reverse_cull_face = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Viewport/Scene/Lighting"]
 environment = ExtResource( 1 )
 
-[node name="Sphere" type="MeshInstance" parent="."]
-transform = Transform( 0.369779, 0, 0, 0, 0.369779, 0, 0, 0, 0.369779, -1.93127, 0.789828, -0.336197 )
-mesh = SubResource( 10 )
-material/0 = SubResource( 11 )
+[node name="Cube" type="MeshInstance" parent="Viewport/Scene"]
+transform = Transform( 0.344122, 0, 0, 0, 0.344122, 0, 0, 0, 0.344122, 1.60164, 0.904398, 0.83527 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 8 )
+
+[node name="FloatAnim" type="AnimationPlayer" parent="Viewport/Scene/Cube"]
+autoplay = "float"
+anims/float = SubResource( 3 )
+
+[node name="RotAnim" type="AnimationPlayer" parent="Viewport/Scene/Cube"]
+autoplay = "RotAnim"
+anims/RESET = SubResource( 5 )
+anims/RotAnim = SubResource( 4 )
