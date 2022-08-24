@@ -1,11 +1,12 @@
 [gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://world_env.tres" type="Environment" id=1]
+[ext_resource path="res://Assets/world_env.tres" type="Environment" id=1]
 [ext_resource path="res://Assets/dither_shader.tres" type="Shader" id=2]
 
 [sub_resource type="ShaderMaterial" id=14]
 shader = ExtResource( 2 )
-shader_param/color_space_size = 64
+shader_param/color_space_size = 32
+shader_param/normalize_dither = 0.05
 
 [sub_resource type="SphereMesh" id=10]
 
@@ -89,9 +90,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Viewport" type="Viewport" parent="."]
-size = Vector2( 640, 480 )
+size = Vector2( 128, 128 )
 handle_input_locally = false
 render_target_update_mode = 3
+shadow_atlas_size = 2048
 
 [node name="Scene" type="Spatial" parent="Viewport"]
 
@@ -140,11 +142,19 @@ omni_range = 12.5973
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2.51282, 0 )
 visible = false
 light_energy = 0.2
+light_cull_mask = 4294966273
 shadow_enabled = true
 shadow_reverse_cull_face = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Viewport/Scene/Lighting"]
 environment = ExtResource( 1 )
+
+[node name="SpotLight" type="SpotLight" parent="Viewport/Scene/Lighting"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 8.74879, 0 )
+light_energy = 0.1
+shadow_enabled = true
+spot_range = 20.2895
+spot_angle = 52.4459
 
 [node name="Cube" type="MeshInstance" parent="Viewport/Scene"]
 transform = Transform( 0.344122, 0, 0, 0, 0.344122, 0, 0, 0, 0.344122, 1.60164, 0.904398, 0.83527 )

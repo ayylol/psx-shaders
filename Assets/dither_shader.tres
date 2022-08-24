@@ -3,11 +3,22 @@
 [resource]
 code = "shader_type canvas_item;
 
-uniform int color_space_size = 64;
+const float M22[] = {
+	-0.25,	0.25,
+	 0.50,	0.00
+	};
+const int M22_row_size = 2;
+const float M44[] = {
+	-0.25,0.25,0.5,0.0
+	};
+const int M44_row_size = 4;
+
+uniform int color_space_size = 32;
+uniform float normalize_dither = 0.05;
 
 void fragment(){
 	float css_f = float(color_space_size);
 	vec3 col =  texture(TEXTURE, UV).xyz;
-	col = round(col * css_f) / css_f;
+	col = round((col + normalize_dither*M22[int(UV.x / TEXTURE_PIXEL_SIZE.x)%M22_row_size + (int(UV.y / TEXTURE_PIXEL_SIZE.y) %M22_row_size)*M22_row_size]) * css_f) / css_f;
 	COLOR = vec4(col,1.f);
 }"
