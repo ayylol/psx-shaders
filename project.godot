@@ -6,23 +6,24 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=4
+config_version=5
 
 [application]
 
 config/name="psx-shaders"
 run/main_scene="res://Root.tscn"
-boot_splash/bg_color=Color( 0, 0, 0, 1 )
+config/features=PackedStringArray("4.0")
+boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="res://icon.png"
 
 [display]
 
-window/size/width=256
-window/size/height=256
-window/size/test_width=1024
-window/size/test_height=768
+window/size/viewport_width=128
+window/size/viewport_height=128
+window/size/window_width_override=1024
+window/size/window_height_override=768
 window/stretch/mode="viewport"
-window/stretch/aspect="keep"
+window/stretch/aspect="keep_width"
 
 [gui]
 

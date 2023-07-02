@@ -1,0 +1,8 @@
+2a60927148abd1d33b818b535e306557
+::res://::1688259521
+icon.png::CompressedTexture2D::5308496735164671729::1674430242::1688259522::1::::<><>::
+README.md::TextFile::-1::1674430242::0::1::::<><>::
+Root.tscn::PackedScene::-1::1688259513::0::1::::<><>::res://Assets/world_env.tres<>res://Assets/dither_shader.tres
+::res://Assets/::1674430242
+dither_shader.tres::Shader::-1::1688259513::0::1::::<><>::
+world_env.tres::Environment::-1::1688259513::0::1::::<><>::
