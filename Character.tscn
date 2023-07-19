@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://bygb87ue1ancg"]
+
+[ext_resource type="Script" path="res://Character.gd" id="1_ip3dc"]
+
+[sub_resource type="Curve" id="Curve_pk8bi"]
+min_value = 1.0
+max_value = 2.0
+_data = [Vector2(0, 2), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_6gykh"]
+min_value = 1.0
+max_value = 2.0
+_data = [Vector2(0, 2), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rbl7l"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rx8dy"]
+
+[node name="Character" type="RigidBody3D"]
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource("1_ip3dc")
+accel_dir_factor = SubResource("Curve_pk8bi")
+max_accel_dir_factor = SubResource("Curve_6gykh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_rbl7l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_rx8dy")

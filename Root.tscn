@@ -1,161 +1,52 @@
-[gd_scene load_steps=15 format=3 uid="uid://bqhh1kt2p2xdf"]
+[gd_scene load_steps=7 format=3 uid="uid://1fop5upu8y1w"]
 
-[ext_resource type="Environment" path="res://Assets/world_env.tres" id="1"]
-[ext_resource type="Shader" path="res://Assets/dither_shader.tres" id="2"]
+[ext_resource type="PackedScene" uid="uid://cyo60a8i3hksl" path="res://PixelCamera.tscn" id="1_cjat5"]
+[ext_resource type="Environment" uid="uid://bca5khdhjof6u" path="res://Assets/world_env.tres" id="2_klyjw"]
+[ext_resource type="PackedScene" uid="uid://d1440fjh7138r" path="res://Catapult.tscn" id="3_vd0ov"]
+[ext_resource type="PackedScene" uid="uid://bygb87ue1ancg" path="res://Character.tscn" id="4_1vagi"]
 
-[sub_resource type="ShaderMaterial" id="14"]
-shader = ExtResource("2")
-shader_parameter/color_space_size = 32
-shader_parameter/normalize_dither = 0.05
+[sub_resource type="BoxMesh" id="BoxMesh_ubmrw"]
 
-[sub_resource type="SphereMesh" id="10"]
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_is526"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2bvqk"]
-albedo_color = Color(0.992157, 0.415686, 0.592157, 1)
+[node name="Scene" type="Node3D"]
 
-[sub_resource type="PlaneMesh" id="1"]
+[node name="Camera3D" parent="." instance=ExtResource("1_cjat5")]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 8.25175, 38.944)
+size = 10.0
 
-[sub_resource type="PlaneMesh" id="9"]
+[node name="Lighting" type="Node3D" parent="."]
 
-[sub_resource type="BoxMesh" id="2"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oop1q"]
-albedo_color = Color(0.239216, 0.831373, 0.984314, 1)
-
-[sub_resource type="Animation" id="3"]
-resource_name = "float"
-length = 2.0
-loop_mode = 1
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position:y")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0.904398, -0.25, 0, 0.25, 0, 1.3, -0.25, 0, 0.25, 0, 0.904398, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1, 2)
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_0uv17"]
-_data = {
-"float": SubResource("3")
-}
-
-[sub_resource type="Animation" id="5"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="4"]
-resource_name = "RotAnim"
-length = 5.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 360, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_emq0c"]
-_data = {
-"RESET": SubResource("5"),
-"RotAnim": SubResource("4")
-}
-
-[node name="Screen" type="SubViewportContainer"]
-material = SubResource("14")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="SubViewport" type="SubViewport" parent="."]
-handle_input_locally = false
-size = Vector2i(128, 128)
-render_target_update_mode = 4
-
-[node name="Scene" type="Node3D" parent="SubViewport"]
-
-[node name="Camera3D" type="Camera3D" parent="SubViewport/Scene"]
-transform = Transform3D(-0.72113, -0.227244, 0.65447, 0, 0.944675, 0.328008, -0.692799, 0.236536, -0.681234, 3.069, 1.93892, -3.5978)
-keep_aspect = 0
-
-[node name="Sphere" type="MeshInstance3D" parent="SubViewport/Scene"]
-transform = Transform3D(0.878382, 0, 0, 0, 0.878382, 0, 0, 0, 0.878382, -0.0957179, 0.92443, -2.54884)
-mesh = SubResource("10")
-surface_material_override/0 = SubResource("StandardMaterial3D_2bvqk")
-
-[node name="Room" type="Node3D" parent="SubViewport/Scene"]
-
-[node name="floor" type="MeshInstance3D" parent="SubViewport/Scene/Room"]
-transform = Transform3D(7, 0, 0, 0, 1, 0, 0, 0, 7, 0, 0, 0)
-mesh = SubResource("1")
-skeleton = NodePath("../..")
-
-[node name="roof" type="MeshInstance3D" parent="SubViewport/Scene/Room"]
-transform = Transform3D(-7, 8.74228e-08, 0, -6.11959e-07, -1, 0, 0, 0, 7, 0, 4.5, 0)
-mesh = SubResource("1")
-skeleton = NodePath("../..")
-
-[node name="Wall" type="MeshInstance3D" parent="SubViewport/Scene/Room"]
-transform = Transform3D(-7, -1.50996e-07, 1.48505e-14, 0, -4.37114e-08, -2.25, 1.05697e-06, -1, 9.83506e-08, 0, 2.25, 7)
-mesh = SubResource("9")
-skeleton = NodePath("../..")
-
-[node name="Wall2" type="MeshInstance3D" parent="SubViewport/Scene/Room"]
-transform = Transform3D(-3.0598e-07, 1, -9.83506e-08, 0, -4.37114e-08, -2.25, -7, -4.37114e-08, 4.29904e-15, -7, 2.25, 0)
-mesh = SubResource("9")
-skeleton = NodePath("../..")
-
-[node name="Lighting" type="Node3D" parent="SubViewport/Scene"]
-
-[node name="OmniLight3D" type="OmniLight3D" parent="SubViewport/Scene/Lighting"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03329, 2.00841, -2.16196)
+[node name="OmniLight3D" type="OmniLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.93751, 1.73859, -2.16196)
+visible = false
 light_energy = 0.3
 shadow_enabled = true
-omni_range = 11.5552
+omni_range = 102.676
+omni_attenuation = 0.517632
 
-[node name="TopLight" type="DirectionalLight3D" parent="SubViewport/Scene/Lighting"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2.51282, 0)
+[node name="TopLight" type="DirectionalLight3D" parent="Lighting"]
+transform = Transform3D(0.871856, -2.14082e-08, 0.489763, -0.489763, -3.811e-08, 0.871856, 0, -1, -4.37114e-08, 2, 2.51282, 0)
 light_energy = 0.2
 light_cull_mask = 4294966273
 shadow_enabled = true
 shadow_reverse_cull_face = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport/Scene/Lighting"]
-environment = ExtResource("1")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting"]
+environment = ExtResource("2_klyjw")
 
-[node name="Cube" type="MeshInstance3D" parent="SubViewport/Scene"]
-transform = Transform3D(0.725966, 0, 0, 0, 0.725966, 0, 0, 0, 0.725966, 1.60164, 1.04084, 0.83527)
-mesh = SubResource("2")
-surface_material_override/0 = SubResource("StandardMaterial3D_oop1q")
+[node name="Catapult" parent="." instance=ExtResource("3_vd0ov")]
+transform = Transform3D(0.383683, -9.73989e-14, 0.923465, 0, 1, -1.05471e-13, -0.923465, -4.04675e-14, 0.383683, 0.306488, 1.63186, -3.52624e-07)
 
-[node name="FloatAnim" type="AnimationPlayer" parent="SubViewport/Scene/Cube"]
-autoplay = "float"
-libraries = {
-"": SubResource("AnimationLibrary_0uv17")
-}
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(217.804, 0, 0, 0, 1, 0, 0, 0, 124.548, 0, -0.641896, 0)
+mesh = SubResource("BoxMesh_ubmrw")
 
-[node name="RotAnim" type="AnimationPlayer" parent="SubViewport/Scene/Cube"]
-autoplay = "RotAnim"
-libraries = {
-"": SubResource("AnimationLibrary_emq0c")
-}
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_is526")
+
+[node name="Character" parent="." instance=ExtResource("4_1vagi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.25853, -3)

@@ -1,1 +1,8 @@
 res://Root.tscn
+res://Assets/pixel_shader.tres
+res://Assets/world_env.tres
+res://PixelCamera.tscn
+res://Catapult.tscn
+res://CatapultWheel.tscn
+res://Assets/catapult_mesh.tscn
+res://Character.tscn

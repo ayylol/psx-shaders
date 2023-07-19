@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ktgxrae6ocs3"]
+
+[ext_resource type="PackedScene" uid="uid://qsf5chqq7h2e" path="res://Assets/catapult.glb" id="1_s2y6g"]
+
+[node name="catapult" instance=ExtResource("1_s2y6g")]
+transform = Transform3D(-1, 8.74228e-08, 0, 3.82137e-15, 4.37114e-08, 1, 8.74228e-08, 1, -4.37114e-08, 0, 0.20492, 0.355114)

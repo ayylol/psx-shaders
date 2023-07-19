@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyo60a8i3hksl"]
+
+[ext_resource type="Shader" uid="uid://c4qeiio84qpd3" path="res://Assets/pixel_shader.tres" id="1_bn825"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_innvr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5xawf"]
+render_priority = 0
+shader = ExtResource("1_bn825")
+shader_parameter/shadows_enabled = true
+shader_parameter/highlights_enabled = true
+shader_parameter/shadow_strength = 0.33
+shader_parameter/highlight_strength = 0.08
+shader_parameter/highlight_color = Color(1, 1, 1, 1)
+shader_parameter/shadow_color = Color(0, 0, 0, 1)
+shader_parameter/color_space_size = 64
+shader_parameter/normalize_dither = 0.004
+
+[node name="Camera3D" type="Camera3D"]
+keep_aspect = 0
+projection = 1
+current = true
+size = 4.815
+
+[node name="PostProcess" type="MeshInstance3D" parent="."]
+transform = Transform3D(-10, -1.50996e-06, -6.60024e-14, 0, -4.37114e-07, 10, -1.50996e-06, 10, 4.37114e-07, 0, 0, -0.160443)
+mesh = SubResource("PlaneMesh_innvr")
+surface_material_override/0 = SubResource("ShaderMaterial_5xawf")
