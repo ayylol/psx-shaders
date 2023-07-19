@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://d1440fjh7138r"]
+[gd_scene load_steps=14 format=3 uid="uid://d1440fjh7138r"]
 
+[ext_resource type="Script" path="res://Catapult.gd" id="1_h7kgy"]
 [ext_resource type="PackedScene" uid="uid://bh7dbb86gfdhe" path="res://CatapultWheel.tscn" id="1_p2uaa"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uveci"]
-size = Vector3(2.03097, 1.21735, 3.60945)
+size = Vector3(2.05432, 1.21735, 3.60945)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_31bfc"]
 resource_name = "Material"
@@ -146,8 +147,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ui6bu")
 
-[node name="VehicleBody3D" type="VehicleBody3D"]
+[node name="Catapult" type="VehicleBody3D"]
 mass = 3.0
+script = ExtResource("1_h7kgy")
 
 [node name="FrameShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.699101, 0)
@@ -164,7 +166,7 @@ mesh = SubResource("ArrayMesh_v2wyr")
 skeleton = NodePath("")
 
 [node name="Arm" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.401635, 6.06452e-08, 2.97525e-15, -3.31397e-08, -0.219474, 0.336365, 5.07897e-08, 0.336365, 0.219474, 0, 0.252194, 0.271264)
+transform = Transform3D(-0.401635, 3.5112e-08, 0, -3.06022e-09, -0.0350048, 0.400106, 3.49784e-08, 0.400106, 0.0350048, 0, 0.252194, 0.271264)
 mesh = SubResource("ArrayMesh_dksbt")
 skeleton = NodePath("")
 
