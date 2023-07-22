@@ -1,6 +1,7 @@
-res://Catapult.tscn
-res://Assets/pixel_shader.tres
-res://Assets/world_env.tres
-res://Catapult.gd
 res://Root.tscn
+res://Assets/world_env.tres
+res://Assets/pixel_shader.tres
 res://PixelCamera.tscn
+res://Catapult.tscn
+res://Character.tscn
+res://Catapult.gd

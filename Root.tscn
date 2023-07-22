@@ -1,6 +1,5 @@
-[gd_scene load_steps=7 format=3 uid="uid://1fop5upu8y1w"]
+[gd_scene load_steps=6 format=3 uid="uid://1fop5upu8y1w"]
 
-[ext_resource type="PackedScene" uid="uid://cyo60a8i3hksl" path="res://PixelCamera.tscn" id="1_cjat5"]
 [ext_resource type="Environment" uid="uid://bca5khdhjof6u" path="res://Assets/world_env.tres" id="2_klyjw"]
 [ext_resource type="PackedScene" uid="uid://d1440fjh7138r" path="res://Catapult.tscn" id="3_vd0ov"]
 [ext_resource type="PackedScene" uid="uid://bygb87ue1ancg" path="res://Character.tscn" id="4_1vagi"]
@@ -11,10 +10,6 @@
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
 [node name="Scene" type="Node3D"]
-
-[node name="Camera3D" parent="." instance=ExtResource("1_cjat5")]
-transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 8.25175, 38.944)
-size = 10.0
 
 [node name="Lighting" type="Node3D" parent="."]
 
@@ -37,7 +32,7 @@ shadow_reverse_cull_face = true
 environment = ExtResource("2_klyjw")
 
 [node name="Catapult" parent="." instance=ExtResource("3_vd0ov")]
-transform = Transform3D(0.383683, -9.73989e-14, 0.923465, 0, 1, -1.05471e-13, -0.923465, -4.04675e-14, 0.383683, 0.306488, 1.63186, -3.52624e-07)
+transform = Transform3D(0.383683, -9.73989e-14, 0.923465, 0, 1, -1.05471e-13, -0.923465, -4.04675e-14, 0.383683, 0.306488, 0.271692, 1.63517)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(217.804, 0, 0, 0, 1, 0, 0, 0, 124.548, 0, -0.641896, 0)

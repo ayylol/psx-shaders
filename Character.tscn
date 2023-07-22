@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bygb87ue1ancg"]
+[gd_scene load_steps=7 format=3 uid="uid://bygb87ue1ancg"]
 
 [ext_resource type="Script" path="res://Character.gd" id="1_ip3dc"]
+[ext_resource type="PackedScene" uid="uid://cyo60a8i3hksl" path="res://PixelCamera.tscn" id="2_4duk0"]
 
 [sub_resource type="Curve" id="Curve_pk8bi"]
 min_value = 1.0
@@ -31,3 +32,10 @@ mesh = SubResource("CapsuleMesh_rbl7l")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_rx8dy")
+
+[node name="CameraBase" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.819497, 0)
+
+[node name="Camera3D" parent="CameraBase" instance=ExtResource("2_4duk0")]
+transform = Transform3D(1, 0, 0, 0, 0.919396, 0.393332, 0, -0.393332, 0.919396, 0, 21.7783, 51.0635)
+size = 11.54
